@@ -1,7 +1,7 @@
 # docker-rainloop
 [![Build Status](https://ci.quacker.org/api/badges/d/docker-rainloop/status.svg)](https://ci.quacker.org/d/docker-rainloop)
 
-## Intro
+## What is this?
 Rainloop webmail + Nginx in Docker
 
 ## Supports
