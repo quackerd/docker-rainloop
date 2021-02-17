@@ -1,0 +1,31 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/rainloop;
+
+        access_log /dev/stdout;
+        error_log /dev/stderr;
+
+	index index.php;
+
+	location / {
+		try_files $uri $uri/ /index.php?$query_string;
+	}
+
+	location ~ \.php$ {
+            fastcgi_index index.php;
+            fastcgi_split_path_info ^(.+\.php)(.*)$;
+            fastcgi_keep_conn on;
+      	    fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+            include /etc/nginx/fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+ 	}
+        location ~ /\.ht {
+            deny all;
+        }
+	location ^~ /data {
+	    deny all;
+	}
+}
+
